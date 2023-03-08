@@ -10,7 +10,7 @@ return {
     "MunifTanjim/nui.nvim",
   },
   keys = {
-    { "<leader>ft", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
+    { "<C-t>", "<cmd>Neotree toggle<cr>", desc = "Toggle Neotree" },
   },
   opts = {
     filesystem = {

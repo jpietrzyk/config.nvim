@@ -129,6 +129,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
+      'RRethy/nvim-treesitter-endwise',
     },
     config = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
@@ -229,6 +230,10 @@ require('nvim-treesitter.configs').setup {
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
+
+  endwise = {
+    enabled = true,
+  },
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
