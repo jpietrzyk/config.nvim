@@ -110,6 +110,7 @@ require('lazy').setup({
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
+  { 'nvim-telescope/telescope-file-browser.nvim', dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' } },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -128,6 +129,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
+      'RRethy/nvim-treesitter-endwise',
     },
     config = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
@@ -175,13 +177,27 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
+require("telescope").load_extension "file_browser"
 require('telescope').setup {
+  extensions = {
+    file_browser = {
+      hidden = true,
+    },
+  },
   defaults = {
     mappings = {
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
       },
+    },
+    file_ignore_patterns = {
+      '.git'
+    },
+  },
+  pickers = {
+    find_files = {
+      hidden = true,
     },
   },
 }
@@ -214,6 +230,10 @@ require('nvim-treesitter.configs').setup {
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
+
+  endwise = {
+    enabled = true,
+  },
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
