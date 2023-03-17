@@ -159,6 +159,10 @@ require('lazy').setup({
 
 -- [[ Basic Keymaps ]]
 
+-- Buffers management (tabs)
+vim.keymap.set('n', '<leader>bh', '<Cmd>BufferPrevious<CR>', { desc = 'Previous buffer (tab)' })
+vim.keymap.set('n', '<leader>bl', '<Cmd>BufferNext<CR>', { desc = 'Next buffer (tab)' })
+
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
